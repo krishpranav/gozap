@@ -1,0 +1,81 @@
+project_name: mzap
+
+before:
+  hooks:
+  - go mod download
+
+builds:
+  -
+    main: .
+    binary: mzap
+    goos:
+      - windows
+      - linux
+      - darwin
+      - freebsd
+    goarch:
+      - amd64
+      - 386
+      - arm
+      - arm64
+    goarm:
+      - 6
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: arm64
+      - goos: windows
+        goarch: 386
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
+
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+
+changelog:
+  sort: desc
+  filters:
+    exclude:
+    - '^MERGE'
+    - "{{ .Tag }}"
+
+release:
+  github:
+    owner: krishpranav
+    name: gozap
+
+brews:
+  -
+    name: krishpranav
+    tap:
+      owner: krishpranav
+      name: gozap
+    url_template: "https://github.com/krishpranav/gozap/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    commit_author:
+      name: krishpranav
+      email: 
+    folder: Formula
+    homepage: "krishpranav.github.io"
+    description: "Multiple target ZAP scanning made in go"
+    test: |
+      system "#{bin}/mzap version"
+    install: |
+      bin.install "mzap"
+snapcrafts:
+  -
+    name: gozap
+    # Remember you need to `snapcraft login` first.
+    publish: true
+    summary: Multiple target ZAP scanning
+    description: Multiple target ZAP scanning made in go.
+    grade: stable
+    confinement: strict
+    license: MIT
+    apps:
+      mzap:
+        plugs: ["home","network"]
