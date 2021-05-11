@@ -31,14 +31,7 @@ func StopActiveScan(apis string, options OptionsZAP) {
 
 }
 
-// func StopAjaxSpider(apis string, options OptionsZAP) {
-// 	arrayAPIs := strings.Split(apis, ",")
-// 	for _, v := range arrayAPIs {
-// 		Stop(v, AjaxSpiderStop, options)
-// 	}
-// }
-
-func StopActiveScan(apis string, options OptionsZAP) {
+func StopAjaxSpider(apis string, options OptionsZAP) {
 	arrayAPIs := strings.Split(apis, ",")
 	for _, v := range arrayAPIs {
 		Stop(v, AjaxSpiderStop, options)
