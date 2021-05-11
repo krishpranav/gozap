@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+
 	zap "github.com/krishpranav/gozap/pkg/zap"
 	"github.com/spf13/cobra"
 )
