@@ -1,4 +1,4 @@
-package banner
+package version
 
 import (
 	"fmt"
