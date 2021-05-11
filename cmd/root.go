@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 
 	version "github.com/krishpranav/gozap/pkg/version"
 	zap "github.com/krishpranav/gozap/pkg/zap"
@@ -14,10 +15,13 @@ import (
 var cfgFile, URLs, apiHosts, APIKey string
 var options zap.OptionsZAP
 
+// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use: "gozap",
+	Use: "mzap",
 }
 
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
@@ -29,8 +33,14 @@ func init() {
 	version.Banner()
 	cobra.OnInitialize(initConfig)
 
+	// Here you will define your flags and configuration settings.
+	// Cobra supports persistent flags, which, if defined here,
+	// will be global for your application.
+
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.mzap.yaml)")
 
+	// Cobra also supports local flags, which will only run
+	// when this action is called directly.
 	rootCmd.PersistentFlags().StringVar(&APIKey, "apikey", "", "ZAP API Key / if you disable apikey, not use this option")
 	rootCmd.PersistentFlags().StringVar(&URLs, "urls", "", "URL list file / e.g --urls hosts.txt")
 	rootCmd.PersistentFlags().StringVar(&apiHosts, "apis", "http://localhost:8090", "ZAP API Host(s) address\ne.g --apis http://localhost:8090,http://192.168.0.4:8090")
@@ -42,6 +52,7 @@ func init() {
 	_ = options
 }
 
+// initConfig reads in config file and ENV variables if set.
 func initConfig() {
 	if cfgFile != "" {
 		// Use config file from the flag.
@@ -59,8 +70,9 @@ func initConfig() {
 		viper.SetConfigName(".mzap")
 	}
 
-	viper.AutomaticEnv() 
+	viper.AutomaticEnv() // read in environment variables that match
 
+	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}

@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync"
 )
+
 // ZapObject is object for zap api
 type ZapObject struct {
 	URL         string
@@ -18,12 +19,16 @@ type ZapObject struct {
 	subtreeOnly bool
 }
 
-// const values
+// SpiderAPI is api for add scan
 const SpiderAPI = "/JSON/spider/action/scan/"
+
+// AScanAPI is api for add scan
 const AScanAPI = "/JSON/ascan/action/scan/"
+
+// AjaxSpiderAPI is api for add scan
 const AjaxSpiderAPI = "/JSON/ajaxSpider/action/scan/"
 
-
+// Run is running app
 func Run(urls, apis, prefix string, options OptionsZAP) {
 	log.WithFields(log.Fields{
 		"Size of Target": len(urls),

@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// ascanCmd represents the ascan command
 var ascanCmd = &cobra.Command{
 	Use:   "ascan",
 	Short: "Add ActiveScan ZAP",

@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:   "stop (spider/ascan/ajaxspider/all)",
 	Short: "Stop Scanning",
