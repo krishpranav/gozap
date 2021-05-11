@@ -4,7 +4,6 @@ import (
 	"strings"
 )
 
-
 func Spider(urls, apis string, options OptionsZAP) {
 	Run(urls, apis, SpiderAPI, options)
 }
@@ -12,7 +11,6 @@ func Spider(urls, apis string, options OptionsZAP) {
 func AjaxSpider(urls, apis string, options OptionsZAP) {
 	Run(urls, apis, AjaxSpiderAPI, options)
 }
-
 
 func ActiveScan(urls, apis string, options OptionsZAP) {
 	Run(urls, apis, AScanAPI, options)
@@ -33,8 +31,14 @@ func StopActiveScan(apis string, options OptionsZAP) {
 
 }
 
+// func StopAjaxSpider(apis string, options OptionsZAP) {
+// 	arrayAPIs := strings.Split(apis, ",")
+// 	for _, v := range arrayAPIs {
+// 		Stop(v, AjaxSpiderStop, options)
+// 	}
+// }
 
-func StopAjaxSpider(apis string, options OptionsZAP) {
+func StopActiveScan(apis string, options OptionsZAP) {
 	arrayAPIs := strings.Split(apis, ",")
 	for _, v := range arrayAPIs {
 		Stop(v, AjaxSpiderStop, options)

@@ -1,6 +1,6 @@
 package zap
 
 type OptionsZAP struct {
-	APIKey	string
-	URLs	string
+	APIKey string
+	urls   string
 }
